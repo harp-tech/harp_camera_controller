@@ -56,8 +56,8 @@ void core_callback_catastrophic_error_detected(void)
 	
 	timer_type0_stop(&TCD0);
 	timer_type0_stop(&TCC0);
-	clr_LED_CAM0;
-	clr_LED_CAM1;
+	clear_io(PORTD, 0);
+	clear_io(PORTC, 0);
 }
 
 /************************************************************************/
@@ -226,18 +226,23 @@ void core_callback_registers_were_reinitialized(void)
 /************************************************************************/
 /* Callbacks: Visualization                                             */
 /************************************************************************/
+extern bool cam0_acquiring;
+extern bool cam1_acquiring;
+
 void core_callback_visualen_to_on(void)
 {
 	/* Update visual indicators */
-	if (TCD0_CTRLA)
+	if (cam0_acquiring)
 		set_LED_CAM0;
 	else
 		clr_LED_CAM0;
 	
-	if (TCC0_CTRLA)
+	if (cam1_acquiring)
 		set_LED_CAM1;
 	else
 		clr_LED_CAM1;
+	
+	set_LED_PWR;
 }
 
 void core_callback_visualen_to_off(void)
@@ -265,8 +270,6 @@ extern bool cam0_start_request;
 extern bool cam1_start_request;
 extern bool cam0_stop_request;
 extern bool cam1_stop_request;
-extern bool cam0_acquiring;
-extern bool cam1_acquiring;
 
 bool cam0_is_using_fixed_frequency = false;
 bool cam1_is_using_fixed_frequency = false;
@@ -371,7 +374,6 @@ void core_callback_t_1ms(void)
 			case MSK_TRG_SRC_INTERNAL_20Hz:  if (!(ms_counter % (1000/20) )) trigger_cam0 = true; break;
 			case MSK_TRG_SRC_INTERNAL_40Hz:  if (!(ms_counter % (1000/40) )) trigger_cam0 = true; break;
 			case MSK_TRG_SRC_INTERNAL_50Hz:  if (!(ms_counter % (1000/50) )) trigger_cam0 = true; break;
-			case MSK_TRG_SRC_INTERNAL_80Hz:  if (!(ms_counter % (1000/80) )) trigger_cam0 = true; break;
 			case MSK_TRG_SRC_INTERNAL_100Hz: if (!(ms_counter % (1000/100))) trigger_cam0 = true; break;
 			case MSK_TRG_SRC_INTERNAL_125Hz: if (!(ms_counter % (1000/125))) trigger_cam0 = true; break;
 		}
@@ -388,7 +390,6 @@ void core_callback_t_1ms(void)
 			case MSK_TRG_SRC_INTERNAL_20Hz:  if (!(ms_counter % (1000/20) )) trigger_cam1 = true; break;
 			case MSK_TRG_SRC_INTERNAL_40Hz:  if (!(ms_counter % (1000/40) )) trigger_cam1 = true; break;
 			case MSK_TRG_SRC_INTERNAL_50Hz:  if (!(ms_counter % (1000/50) )) trigger_cam1 = true; break;
-			case MSK_TRG_SRC_INTERNAL_80Hz:  if (!(ms_counter % (1000/80) )) trigger_cam1 = true; break;
 			case MSK_TRG_SRC_INTERNAL_100Hz: if (!(ms_counter % (1000/100))) trigger_cam1 = true; break;
 			case MSK_TRG_SRC_INTERNAL_125Hz: if (!(ms_counter % (1000/125))) trigger_cam1 = true; break;
 		}
