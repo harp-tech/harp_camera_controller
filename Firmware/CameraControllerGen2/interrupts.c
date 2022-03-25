@@ -146,7 +146,14 @@ ISR(TCC0_CCA_vect, ISR_NAKED)
 /************************************************************************/
 ISR(PORTA_INT0_vect, ISR_NAKED)
 {	
-	if (read_CAM0_STROBE)
+	bool strobe_up;
+	
+	if (app_regs.REG_CAM0_STROBE_SOURCE == MSK_STROBE_DIRECT)
+		strobe_up = read_CAM0_STROBE ? true : false;
+	else
+		strobe_up = read_CAM0_STROBE_PU ? true : false;
+	
+	if (strobe_up)
 	{
 		if (app_regs.REG_CAM0_EVENT_CONFIG == MSK_EVENT_ON_STROBE)
 		{
@@ -175,7 +182,14 @@ ISR(PORTA_INT0_vect, ISR_NAKED)
 /************************************************************************/
 ISR(PORTC_INT0_vect, ISR_NAKED)
 {
-	if (read_CAM1_STROBE)
+	bool strobe_up;
+	
+	if (app_regs.REG_CAM1_STROBE_SOURCE == MSK_STROBE_DIRECT)
+		strobe_up = read_CAM1_STROBE ? true : false;
+	else
+		strobe_up = read_CAM1_STROBE_PU ? true : false;
+	
+	if (strobe_up)
 	{
 		if (app_regs.REG_CAM1_EVENT_CONFIG == MSK_EVENT_ON_STROBE)
 		{
