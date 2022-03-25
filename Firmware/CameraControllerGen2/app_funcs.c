@@ -138,6 +138,21 @@ bool cam1_stop_request = false;
 bool cam0_acquiring = false;
 bool cam1_acquiring = false;
 
+extern bool stop_cam0_when_possible;
+extern bool stop_cam1_when_possible;
+
+uint8_t cam0_freq_prescaler;
+uint8_t cam1_freq_prescaler;
+uint16_t cam0_freq_target_count;
+uint16_t cam1_freq_target_count;
+uint16_t cam0_freq_dutycyle;
+uint16_t cam1_freq_dutycyle;
+
+uint8_t cam0_pulse_prescaler;
+uint8_t cam1_pulse_prescaler;
+uint16_t cam0_pulse_target_count;
+uint16_t cam1_pulse_target_count;
+
 void app_read_REG_START_AND_STOP(void)
 {
 	app_regs.REG_START_AND_STOP  = (cam0_acquiring) ? B_START_CAM0 : B_STOP_CAM0;
@@ -170,7 +185,27 @@ bool app_write_REG_START_AND_STOP(void *a)
 		{
 			if (cam1_start_request) cam1_start_request = false;
 			if (cam1_acquiring)     cam1_stop_request = true;
-		}	
+		}
+		
+	if (reg & B_SINGLE_FRAME_CAM0)
+		if (app_regs.REG_CAM0_TRIGGER_CONFIG != MSK_TRG_SRC_INPUT0)
+		{
+			if (cam0_acquiring)     return false;
+			if (cam0_start_request)	return false;
+			
+			timer_type0_pwm(&TCD0, cam0_freq_prescaler, cam0_freq_target_count, cam0_freq_dutycyle, INT_LEVEL_LOW, INT_LEVEL_LOW);
+			stop_cam0_when_possible = true;
+		}
+	
+	if (reg & B_SINGLE_FRAME_CAM1)
+		if (app_regs.REG_CAM1_TRIGGER_CONFIG != MSK_TRG_SRC_INPUT0)
+		{
+			if (cam1_acquiring)     return false;
+			if (cam1_start_request)	return false;
+			
+			timer_type0_pwm(&TCC0, cam1_freq_prescaler, cam1_freq_target_count, cam1_freq_dutycyle, INT_LEVEL_LOW, INT_LEVEL_LOW);
+			stop_cam1_when_possible = true;
+		}			
 
 	app_regs.REG_START_AND_STOP = reg;
 	return true;
@@ -329,18 +364,6 @@ bool app_write_REG_CAM0_STROBE_SOURCE(void *a)
 /************************************************************************/
 /* REG_CAM0_TRIGGER_FREQUENCY                                           */
 /************************************************************************/
-uint8_t cam0_freq_prescaler;
-uint8_t cam1_freq_prescaler;
-uint16_t cam0_freq_target_count;
-uint16_t cam1_freq_target_count;
-uint16_t cam0_freq_dutycyle;
-uint16_t cam1_freq_dutycyle;
-
-uint8_t cam0_pulse_prescaler;
-uint8_t cam1_pulse_prescaler;
-uint16_t cam0_pulse_target_count;
-uint16_t cam1_pulse_target_count;
-
 void update_cam0_timer_pre_values(void)
 {
 	calculate_timer_16bits(32000000, app_regs.REG_CAM0_TRIGGER_FREQUENCY, &cam0_freq_prescaler, &cam0_freq_target_count);
