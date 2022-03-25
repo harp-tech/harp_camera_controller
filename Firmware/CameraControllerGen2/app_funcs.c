@@ -237,6 +237,9 @@ bool app_write_REG_CAM0_TRIGGER_CONFIG(void *a)
 {
 	uint8_t reg = *((uint8_t*)a);
 	
+	if (cam0_acquiring)     return false;
+	if (cam0_start_request)	return false;
+	
 	if (reg & ~GM_TRG_SRC)
 		return false;
 	else
@@ -444,6 +447,9 @@ void app_read_REG_CAM1_TRIGGER_CONFIG(void) {}
 bool app_write_REG_CAM1_TRIGGER_CONFIG(void *a)
 {
 	uint8_t reg = *((uint8_t*)a);
+	
+	if (cam1_acquiring)     return false;
+	if (cam1_start_request)	return false;
 	
 	if (reg & ~GM_TRG_SRC)
 		return false;

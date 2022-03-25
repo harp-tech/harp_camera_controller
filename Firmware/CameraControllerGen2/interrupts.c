@@ -44,6 +44,15 @@ ISR(TCD0_OVF_vect, ISR_NAKED)
 	{
 		clear_io(PORTD, 0);
 		TCD0_CTRLA = 0;
+		
+		if (stop_cam0_when_possible)
+		{		
+			stop_cam0_when_possible = false;
+			cam0_acquiring = false;
+			
+			cam0_is_using_fixed_frequency = false;
+			clr_LED_CAM0;	
+		}
 	}
 	else
 	{
@@ -92,6 +101,15 @@ ISR(TCC0_OVF_vect, ISR_NAKED)
 	{
 		clear_io(PORTC, 0);
 		TCC0_CTRLA = 0;
+		
+		if (stop_cam1_when_possible)
+		{		
+			stop_cam1_when_possible = false;
+			cam1_acquiring = false;
+			
+			cam1_is_using_fixed_frequency = false;
+			clr_LED_CAM1;	
+		}
 	}
 	else
 	{
