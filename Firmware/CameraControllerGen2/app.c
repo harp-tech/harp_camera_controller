@@ -137,54 +137,8 @@ void core_callback_reset_registers(void)
 	app_regs.REG_RESERVED4 = 0;
 	app_regs.REG_RESERVED5 = 0;
 	
-	app_regs.REG_OUT0_CONFIG = MSK_OUT0_TRIGGER_CAM0;
-	app_regs.REG_OUT1_CONFIG = MSK_OUT1_TRIGGER_CAM1;
-	
-	app_regs.REG_RESERVED6 = 0;
-	app_regs.REG_RESERVED7 = 0;
-	
-	//app_regs.REG_OUT_SET;
-	//app_regs.REG_OUT_CLEAR;
-	//app_regs.REG_OUT_TOGGLE;
-	app_regs.REG_OUT_WRITE = 0;
-	
-	//app_regs.REG_IN_STATE;
-	
-	
-	
-	//app_regs.REG_CAM0_EVENT;
-	//app_regs.REG_CAM1_EVENT;
-	
-	app_regs.REG_CAM0_EVENT_CONFIG = MSK_EVENT_ON_TRIGGER;
-	app_regs.REG_CAM1_EVENT_CONFIG = MSK_EVENT_ON_TRIGGER;
-	
-	app_regs.REG_START_AND_STOP = B_STOP_CAM0 | B_STOP_CAM1;
-	app_regs.REG_START_TIMESTAMP = 1;
-	app_regs.REG_STOP_TIMESTAMP = 5;
-	
-	app_regs.REG_RESERVED0 = 0;
-	app_regs.REG_RESERVED1 = 0;
-	
-	app_regs.REG_CAM0_TRIGGER_CONFIG = MSK_TRG_SRC_INTERNAL;
-	app_regs.REG_CAM0_TRIGGER_INVERTED = MSK_TRIGGER_INVERTED_NO;
-	app_regs.REG_CAM0_STROBE_SOURCE = MSK_STROBE_PULL_UP;
-	app_regs.REG_CAM0_TRIGGER_FREQUENCY = 10;		// 50 Hz
-	app_regs.REG_CAM0_TRIGGER_DURATION_US = 1000;	// 1 mS
-	
-	app_regs.REG_RESERVED2 = 0;
-	app_regs.REG_RESERVED3 = 0;
-	
-	app_regs.REG_CAM1_TRIGGER_CONFIG = MSK_TRG_SRC_INTERNAL;
-	app_regs.REG_CAM1_TRIGGER_INVERTED = MSK_TRIGGER_INVERTED_NO;
-	app_regs.REG_CAM1_STROBE_SOURCE = MSK_STROBE_PULL_UP;
-	app_regs.REG_CAM1_TRIGGER_FREQUENCY = 10;		// 125 Hz
-	app_regs.REG_CAM1_TRIGGER_DURATION_US = 1000;	// 1 ms
-	
-	app_regs.REG_RESERVED4 = 0;
-	app_regs.REG_RESERVED5 = 0;
-	
-	app_regs.REG_OUT0_CONFIG = MSK_OUT0_TRIGGER_CAM0;
-	app_regs.REG_OUT1_CONFIG = MSK_OUT1_TRIGGER_CAM1;
+	app_regs.REG_OUT0_CONFIG = MSK_OUT0_SOFTWARE;
+	app_regs.REG_OUT1_CONFIG = MSK_OUT1_SOFTWARE;
 	
 	app_regs.REG_RESERVED6 = 0;
 	app_regs.REG_RESERVED7 = 0;
@@ -199,9 +153,11 @@ void core_callback_reset_registers(void)
 
 void core_callback_registers_were_reinitialized(void)
 {
-	/* Update registers if needed */
-	app_write_REG_START_AND_STOP(&app_regs.REG_START_AND_STOP);
+	/* Reset stop and start timestamps */
+	app_regs.REG_START_TIMESTAMP = 0;
+	app_regs.REG_STOP_TIMESTAMP = 0;
 	
+	/* Update registers if needed */	
 	app_write_REG_CAM0_TRIGGER_CONFIG(&app_regs.REG_CAM0_TRIGGER_CONFIG);
 	app_write_REG_CAM0_TRIGGER_INVERTED(&app_regs.REG_CAM0_TRIGGER_INVERTED);
 	app_write_REG_CAM0_STROBE_SOURCE(&app_regs.REG_CAM0_STROBE_SOURCE);
@@ -218,9 +174,6 @@ void core_callback_registers_were_reinitialized(void)
 	app_write_REG_OUT1_CONFIG(&app_regs.REG_OUT1_CONFIG);
 	
 	app_write_REG_OUT_WRITE(&app_regs.REG_OUT_WRITE);
-	
-	app_regs.REG_START_AND_STOP = B_START_CAM0 | B_START_CAM1;
-	app_write_REG_START_AND_STOP(&app_regs.REG_START_AND_STOP);
 }
 
 /************************************************************************/
