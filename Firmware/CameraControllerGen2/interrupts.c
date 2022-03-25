@@ -131,7 +131,7 @@ ISR(TCC0_CCA_vect, ISR_NAKED)
 		clr_LED_CAM1;
 	}
 	
-	if (app_regs.REG_CAM0_EVENT_CONFIG == MSK_EVENT_ON_TRIGGER)
+	if (app_regs.REG_CAM1_EVENT_CONFIG == MSK_EVENT_ON_TRIGGER)
 	{
 		app_regs.REG_CAM1_EVENT = B_TRIGGER;
 		core_func_update_user_timestamp(cam1_int_s, cam1_int_us);
