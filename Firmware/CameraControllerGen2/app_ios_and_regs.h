@@ -243,7 +243,7 @@ typedef struct
 #define MSK_TRG_SRC_INTERNAL_40Hz          9            // Trigger is synchronously done at 40Hz
 #define MSK_TRG_SRC_INTERNAL_50Hz          10           // Trigger is synchronously done at 50Hz
 #define MSK_TRG_SRC_INTERNAL_RESERVED3     11           // Reserved, do not use
-#define MSK_TRG_SRC_INTERNAL_80Hz          12           // Trigger is synchronously done at 80Hz
+#define MSK_TRG_SRC_INTERNAL_RESERVED4     12           // Reserved, do not use
 #define MSK_TRG_SRC_INTERNAL_100Hz         13           // Trigger is synchronously done at 100Hz
 #define MSK_TRG_SRC_INTERNAL_125Hz         14           // Trigger is synchronously done at 125Hz
 #define MSK_TRG_SRC_INPUT0                 15           // Trigger is controlled by the external Input 0
