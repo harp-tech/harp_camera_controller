@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2022-03-26T00:21:30Z",
+        "GenerationSoftware": {
+            "Application": "EAGLE",
+            "Vendor": "Autodesk",
+            "Version": "9.5.1"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.57,
+        "LayerNumber": 2,
+        "Name": {
+            "ProjectId": "harp camera controller rear panel"
+        },
+        "Owner": "Jon Newman <jpnewman@mit.edu>",
+        "Size": {
+            "X": 133,
+            "Y": 35
+        }
+    }
+}
