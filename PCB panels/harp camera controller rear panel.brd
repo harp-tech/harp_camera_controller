@@ -7,7 +7,7 @@
 <setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.1" altunitdist="mm" altunit="mm"/>
+<grid distance="0.01" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.1" altunitdist="mm" altunit="mm"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -206,9 +206,20 @@ IN</text>
 <text x="54.4714" y="23.724" size="2.286" layer="21" font="vector" ratio="15" align="bottom-center">CLK
 OUT</text>
 <text x="66.5" y="5.144" size="1.9304" layer="21" font="vector" ratio="15" align="bottom-center">For Research Use Only</text>
-<wire x1="106.24" y1="14.21" x2="114.24" y2="14.21" width="0" layer="20"/>
 <text x="110.88" y="27.144" size="2.286" layer="21" font="vector" ratio="15" align="bottom-center">12V</text>
-<hole x="110.88" y="20.7" drill="6.5"/>
+<wire x1="106.28" y1="14.2" x2="105.98" y2="14.5" width="0" layer="20" curve="-90"/>
+<wire x1="105.98" y1="14.5" x2="105.98" y2="25.3" width="0" layer="20"/>
+<wire x1="105.98" y1="25.3" x2="106.28" y2="25.6" width="0" layer="20" curve="-90"/>
+<wire x1="106.28" y1="25.6" x2="115.48" y2="25.6" width="0" layer="20"/>
+<wire x1="115.48" y1="25.6" x2="115.78" y2="25.3" width="0" layer="20" curve="-90"/>
+<wire x1="115.78" y1="25.3" x2="115.78" y2="14.5" width="0" layer="20"/>
+<wire x1="115.78" y1="14.5" x2="115.48" y2="14.2" width="0" layer="20" curve="-90"/>
+<wire x1="115.48" y1="14.2" x2="106.28" y2="14.2" width="0" layer="20"/>
+<wire x1="110.88" y1="15.8" x2="110.48" y2="16.2" width="0" layer="51"/>
+<wire x1="110.48" y1="15.4" x2="110.88" y2="15.8" width="0" layer="51"/>
+<wire x1="110.88" y1="15.8" x2="111.28" y2="16.2" width="0" layer="51"/>
+<wire x1="110.88" y1="15.8" x2="111.28" y2="15.4" width="0" layer="51"/>
+<wire x1="110.88" y1="15.8" x2="110.88" y2="16.6" width="0" layer="51"/>
 </plain>
 <libraries>
 </libraries>
