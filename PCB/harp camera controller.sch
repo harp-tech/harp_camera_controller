@@ -21259,9 +21259,9 @@ stage</text>
 <pinref part="IC8" gate="A" pin="I"/>
 </segment>
 <segment>
-<wire x1="576.58" y1="452.12" x2="604.52" y2="452.12" width="0.1524" layer="91"/>
-<label x="604.52" y="452.12" size="1.778" layer="95" rot="MR0"/>
-<pinref part="IC6" gate="G$1" pin="!!RXD1MISOPD6"/>
+<pinref part="IC6" gate="G$1" pin="PC2/OC0C/RXD0"/>
+<wire x1="459.74" y1="424.18" x2="515.62" y2="424.18" width="0.1524" layer="91"/>
+<label x="459.74" y="424.18" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$5" class="0">
@@ -21522,9 +21522,9 @@ stage</text>
 <pinref part="IC7" gate="A" pin="I"/>
 </segment>
 <segment>
-<wire x1="576.58" y1="449.58" x2="604.52" y2="449.58" width="0.1524" layer="91"/>
-<label x="604.52" y="449.58" size="1.778" layer="95" rot="MR0"/>
-<pinref part="IC6" gate="G$1" pin="!!!TXD1SCKCLKOPD7"/>
+<pinref part="IC6" gate="G$1" pin="PC3/OC0D/TXD0"/>
+<wire x1="515.62" y1="421.64" x2="459.74" y2="421.64" width="0.1524" layer="91"/>
+<label x="459.74" y="421.64" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$41" class="0">
@@ -22229,9 +22229,9 @@ stage</text>
 <pinref part="U3" gate="G$1" pin="3Y"/>
 </segment>
 <segment>
-<wire x1="459.74" y1="421.64" x2="515.62" y2="421.64" width="0.1524" layer="91"/>
-<label x="459.74" y="421.64" size="1.778" layer="95"/>
-<pinref part="IC6" gate="G$1" pin="PC3/OC0D/TXD0"/>
+<wire x1="576.58" y1="449.58" x2="629.92" y2="449.58" width="0.1524" layer="91"/>
+<pinref part="IC6" gate="G$1" pin="!!!TXD1SCKCLKOPD7"/>
+<label x="629.92" y="449.58" size="1.778" layer="95" rot="MR0"/>
 </segment>
 </net>
 <net name="IN_CAM2_5V_TOL_PULLUP" class="0">
@@ -22303,9 +22303,9 @@ stage</text>
 <pinref part="U3" gate="G$1" pin="4Y"/>
 </segment>
 <segment>
-<wire x1="459.74" y1="424.18" x2="515.62" y2="424.18" width="0.1524" layer="91"/>
-<label x="459.74" y="424.18" size="1.778" layer="95"/>
-<pinref part="IC6" gate="G$1" pin="PC2/OC0C/RXD0"/>
+<wire x1="576.58" y1="452.12" x2="629.92" y2="452.12" width="0.1524" layer="91"/>
+<pinref part="IC6" gate="G$1" pin="!!RXD1MISOPD6"/>
+<label x="629.92" y="452.12" size="1.778" layer="95" rot="MR0"/>
 </segment>
 </net>
 <net name="OUT_0_BNC" class="1">
