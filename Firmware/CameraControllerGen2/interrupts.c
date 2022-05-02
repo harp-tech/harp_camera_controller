@@ -180,7 +180,7 @@ ISR(PORTA_INT0_vect, ISR_NAKED)
 /************************************************************************/ 
 /* CAM1_STROBE and CAM1_STROBE_PU                                       */
 /************************************************************************/
-ISR(PORTC_INT0_vect, ISR_NAKED)
+ISR(PORTD_INT0_vect, ISR_NAKED)
 {
 	bool strobe_up;
 	

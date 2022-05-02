@@ -9,8 +9,8 @@ void init_ios(void)
 {	/* Configure input pins */
 	io_pin2in(&PORTA, 0, PULL_IO_TRISTATE, SENSE_IO_EDGES_BOTH);         // CAM0_STROBE
 	io_pin2in(&PORTA, 1, PULL_IO_TRISTATE, SENSE_IO_EDGES_BOTH);         // CAM0_STROBE_PU
-	io_pin2in(&PORTC, 3, PULL_IO_TRISTATE, SENSE_IO_EDGES_BOTH);         // CAM1_STROBE
-	io_pin2in(&PORTC, 2, PULL_IO_TRISTATE, SENSE_IO_EDGES_BOTH);         // CAM1_STROBE_PU
+	io_pin2in(&PORTD, 7, PULL_IO_TRISTATE, SENSE_IO_EDGES_BOTH);         // CAM1_STROBE
+	io_pin2in(&PORTD, 6, PULL_IO_TRISTATE, SENSE_IO_EDGES_BOTH);         // CAM1_STROBE_PU
 	io_pin2in(&PORTB, 3, PULL_IO_TRISTATE, SENSE_IO_EDGES_BOTH);         // INPUT0
 	io_pin2in(&PORTD, 0, PULL_IO_TRISTATE, SENSE_IO_EDGE_RISING);        // CAM0
 	io_pin2in(&PORTD, 1, PULL_IO_TRISTATE, SENSE_IO_NO_INT_USED);        // OUT0
@@ -20,8 +20,8 @@ void init_ios(void)
 	/* Configure input interrupts */
 	io_set_int(&PORTA, INT_LEVEL_LOW, 0, (1<<0), false);                 // CAM0_STROBE
 	io_set_int(&PORTA, INT_LEVEL_LOW, 0, (1<<1), false);                 // CAM0_STROBE_PU
-	io_set_int(&PORTC, INT_LEVEL_LOW, 0, (1<<3), false);                 // CAM1_STROBE
-	io_set_int(&PORTC, INT_LEVEL_LOW, 0, (1<<2), false);                 // CAM1_STROBE_PU
+	io_set_int(&PORTD, INT_LEVEL_LOW, 0, (1<<7), false);                 // CAM1_STROBE
+	io_set_int(&PORTD, INT_LEVEL_LOW, 0, (1<<6), false);                 // CAM1_STROBE_PU
 	io_set_int(&PORTB, INT_LEVEL_LOW, 1, (1<<3), false);                 // INPUT0
 	io_set_int(&PORTD, INT_LEVEL_LOW, 1, (1<<0), false);                 // CAM0
 	io_set_int(&PORTC, INT_LEVEL_LOW, 1, (1<<0), false);                 // CAM1
