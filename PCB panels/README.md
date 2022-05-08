@@ -1,4 +1,4 @@
-# Harp Expander Panels
+# Harp Camera Controller Panels
 
 ## Licensing
 
