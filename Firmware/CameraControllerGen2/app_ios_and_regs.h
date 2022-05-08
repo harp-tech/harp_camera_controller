@@ -18,8 +18,8 @@ void init_ios(void);
 
 #define read_CAM0_STROBE read_io(PORTA, 0)      // CAM0_STROBE
 #define read_CAM0_STROBE_PU read_io(PORTA, 1)   // CAM0_STROBE_PU
-#define read_CAM1_STROBE read_io(PORTC, 3)      // CAM1_STROBE
-#define read_CAM1_STROBE_PU read_io(PORTC, 2)   // CAM1_STROBE_PU
+#define read_CAM1_STROBE read_io(PORTD, 7)      // CAM1_STROBE
+#define read_CAM1_STROBE_PU read_io(PORTD, 6)   // CAM1_STROBE_PU
 #define read_INPUT0 read_io(PORTB, 3)           // INPUT0
 #define read_CAM0 read_io(PORTD, 0)             // CAM0
 #define read_OUT0 read_io(PORTD, 1)             // OUT0

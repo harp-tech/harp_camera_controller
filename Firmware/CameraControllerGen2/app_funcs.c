@@ -547,11 +547,11 @@ bool app_write_REG_CAM1_STROBE_SOURCE(void *a)
 	switch (reg)
 	{
 		case MSK_STROBE_DIRECT:
-			io_set_int(&PORTC, INT_LEVEL_LOW, 0, (1<<3), true);	// Sets CAM0_STROBE as the interrupt source
+			io_set_int(&PORTD, INT_LEVEL_LOW, 0, (1<<7), true);	// Sets CAM1_STROBE as the interrupt source
 			break;
 		
 		case MSK_STROBE_PULL_UP:
-			io_set_int(&PORTC, INT_LEVEL_LOW, 0, (1<<2), true);	// Sets CAM1_STROBE_PU as the interrupt source
+			io_set_int(&PORTD, INT_LEVEL_LOW, 0, (1<<6), true);	// Sets CAM1_STROBE_PU as the interrupt source
 			break;
 	}
 	
