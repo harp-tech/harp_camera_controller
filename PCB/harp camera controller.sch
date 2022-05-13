@@ -16821,12 +16821,12 @@ In this library the device names are the same as the pin names of the symbols, t
 <attribute name="NOTES" value="-"/>
 <attribute name="TYPE" value="SMD"/>
 </part>
-<part name="R12" library="rcl" deviceset="R-EU_" device="R0402" value="31.6k">
+<part name="R12" library="rcl" deviceset="R-EU_" device="R0402" value="31.6k 0.1%">
 <attribute name="DIGIKEY_PN" value="311-40.2KLRCT-ND"/>
 <attribute name="MPN" value="RC0402FR-0740K2L"/>
 <attribute name="TYPE" value="SMD"/>
 </part>
-<part name="R13" library="rcl" deviceset="R-EU_" device="R0402" value="10k">
+<part name="R13" library="rcl" deviceset="R-EU_" device="R0402" value="10k 0.1%">
 <attribute name="DIGIKEY_PN" value="541-3959-1-ND"/>
 <attribute name="MPN" value="CRCW040210K0FKED"/>
 <attribute name="NOTES" value="-"/>
@@ -19663,15 +19663,15 @@ stage</text>
 <attribute name="MOUSER_PN" x="106.68" y="459.74" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R12" gate="G$1" x="154.94" y="467.36" smashed="yes" rot="MR90">
-<attribute name="NAME" x="159.766" y="468.0966" size="1.778" layer="95" rot="MR0"/>
-<attribute name="VALUE" x="163.576" y="465.074" size="1.778" layer="96" rot="MR0"/>
+<attribute name="NAME" x="156.464" y="468.6554" size="1.778" layer="95" rot="MR180"/>
+<attribute name="VALUE" x="156.464" y="465.836" size="1.778" layer="96" rot="MR180"/>
 <attribute name="MPN" x="154.94" y="467.36" size="1.778" layer="96" rot="MR90" display="off"/>
 <attribute name="TYPE" x="154.94" y="467.36" size="1.778" layer="96" rot="MR90" display="off"/>
 <attribute name="DIGIKEY_PN" x="154.94" y="467.36" size="1.778" layer="96" rot="MR90" display="off"/>
 </instance>
 <instance part="R13" gate="G$1" x="154.94" y="449.58" smashed="yes" rot="MR90">
-<attribute name="NAME" x="161.798" y="451.0786" size="1.778" layer="95" rot="MR0"/>
-<attribute name="VALUE" x="160.782" y="448.564" size="1.778" layer="96" rot="MR0"/>
+<attribute name="NAME" x="156.464" y="451.3834" size="1.778" layer="95" rot="MR180"/>
+<attribute name="VALUE" x="156.21" y="448.818" size="1.778" layer="96" rot="MR180"/>
 <attribute name="MPN" x="154.94" y="449.58" size="1.778" layer="96" rot="MR90" display="off"/>
 <attribute name="TYPE" x="154.94" y="449.58" size="1.778" layer="96" rot="MR90" display="off"/>
 <attribute name="DIGIKEY_PN" x="154.94" y="449.58" size="1.778" layer="96" rot="MR90" display="off"/>

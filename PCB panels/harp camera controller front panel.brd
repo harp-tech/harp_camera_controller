@@ -2795,7 +2795,7 @@ middle</text>
 <rectangle x1="11.625334375" y1="6.923384375" x2="12.245634375" y2="6.934865625" layer="21"/>
 <text x="11.5821125" y="8.50470625" size="1.27" layer="21" font="vector" ratio="15">Powered by:</text>
 <text x="78.450390625" y="3.3" size="1.778" layer="21" font="vector" ratio="18" align="bottom-center">harp camera
-controller v1.1</text>
+controller v1.2</text>
 <wire x1="32.57" y1="12.6" x2="32.27" y2="12.9" width="0" layer="20" curve="-90"/>
 <wire x1="32.27" y1="12.9" x2="32.27" y2="26.2" width="0" layer="20"/>
 <wire x1="32.27" y1="26.2" x2="32.57" y2="26.5" width="0" layer="20" curve="-90"/>

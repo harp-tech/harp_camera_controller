@@ -2928,14 +2928,14 @@ Your Eurocircuits Team
 <attribute name="TYPE" value="SMD" x="18.2612" y="57.7612" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="15.7974" y="53.875" size="0.8128" layer="27" font="vector" ratio="15" display="off"/>
 </element>
-<element name="R12" library="rcl" package="R0402" value="31.6k" x="24.6124" y="49.5244" smashed="yes" rot="R270">
+<element name="R12" library="rcl" package="R0402" value="31.6k 0.1%" x="24.6124" y="49.5244" smashed="yes" rot="R270">
 <attribute name="DIGIKEY_PN" value="311-40.2KLRCT-ND" x="43.3068" y="49.5244" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="RC0402FR-0740K2L" x="43.3068" y="49.5244" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="25.4056" y="49.4028" size="0.8128" layer="25" font="vector" ratio="15"/>
 <attribute name="TYPE" value="SMD" x="43.3068" y="49.5244" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="22.7074" y="50.1594" size="1.27" layer="27" rot="R270" display="off"/>
 </element>
-<element name="R13" library="rcl" package="R0402" value="10k" x="24.6124" y="58.2988" smashed="yes" rot="R270">
+<element name="R13" library="rcl" package="R0402" value="10k 0.1%" x="24.6124" y="58.2988" smashed="yes" rot="R270">
 <attribute name="DIGIKEY_PN" value="541-3959-1-ND" x="38.43" y="64.1916" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MPN" value="CRCW040210K0FKED" x="38.43" y="64.1916" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="NAME" x="25.445" y="57.9626" size="0.8128" layer="25" font="vector" ratio="15"/>
