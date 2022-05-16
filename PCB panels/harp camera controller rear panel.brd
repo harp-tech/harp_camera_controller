@@ -7,7 +7,7 @@
 <setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.01" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.1" altunitdist="mm" altunit="mm"/>
+<grid distance="0.393700787" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="0.1" altunitdist="mm" altunit="mm"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -220,6 +220,9 @@ OUT</text>
 <wire x1="110.88" y1="15.8" x2="111.28" y2="16.2" width="0" layer="51"/>
 <wire x1="110.88" y1="15.8" x2="111.28" y2="15.4" width="0" layer="51"/>
 <wire x1="110.88" y1="15.8" x2="110.88" y2="16.6" width="0" layer="51"/>
+<text x="110.88" y="7.99" size="1.016" layer="21" font="vector" ratio="14" align="bottom-center">The use of the 12V supply is not mandatory.
+Use only in case of powering the cameras
+through this device.</text>
 </plain>
 <libraries>
 </libraries>
