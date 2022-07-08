@@ -70,6 +70,7 @@ uint8_t app_regs_type[] = {
 	TYPE_U8,
 	TYPE_U8,
 	TYPE_U8,
+	TYPE_U8,
 	TYPE_U32,
 	TYPE_U32,
 	TYPE_U8,
@@ -131,6 +132,7 @@ uint16_t app_regs_n_elements[] = {
 	1,
 	1,
 	1,
+	1,
 	1
 };
 
@@ -140,6 +142,7 @@ uint8_t *app_regs_pointer[] = {
 	(uint8_t*)(&app_regs.REG_CAM0_EVENT_CONFIG),
 	(uint8_t*)(&app_regs.REG_CAM1_EVENT_CONFIG),
 	(uint8_t*)(&app_regs.REG_START_AND_STOP),
+	(uint8_t*)(&app_regs.REG_START_AND_STOP_TIMESTAMPED),
 	(uint8_t*)(&app_regs.REG_START_TIMESTAMP),
 	(uint8_t*)(&app_regs.REG_STOP_TIMESTAMP),
 	(uint8_t*)(&app_regs.REG_RESERVED0),

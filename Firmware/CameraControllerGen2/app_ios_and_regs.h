@@ -139,6 +139,7 @@ typedef struct
 	uint8_t REG_CAM0_EVENT_CONFIG;
 	uint8_t REG_CAM1_EVENT_CONFIG;
 	uint8_t REG_START_AND_STOP;
+	uint8_t REG_START_AND_STOP_TIMESTAMPED;
 	uint32_t REG_START_TIMESTAMP;
 	uint32_t REG_STOP_TIMESTAMP;
 	uint8_t REG_RESERVED0;
@@ -176,34 +177,35 @@ typedef struct
 #define ADD_REG_CAM1_EVENT                  33 // U8     
 #define ADD_REG_CAM0_EVENT_CONFIG           34 // U8     
 #define ADD_REG_CAM1_EVENT_CONFIG           35 // U8     
-#define ADD_REG_START_AND_STOP              36 // U8     Starts and stops the cameras
-#define ADD_REG_START_TIMESTAMP             37 // U32    Set when the camera starts to acquire frames
-#define ADD_REG_STOP_TIMESTAMP              38 // U32    Set when the camera stops to acquire frames
-#define ADD_REG_RESERVED0                   39 // U8     
-#define ADD_REG_RESERVED1                   40 // U8     
-#define ADD_REG_CAM0_TRIGGER_CONFIG         41 // U8     Configures the trigger source for camera 0
-#define ADD_REG_CAM0_TRIGGER_INVERTED       42 // U8     Configures if trigger is inverted for camera 0
-#define ADD_REG_CAM0_STROBE_SOURCE          43 // U8     Select the strobe source line for camera 0. The direct line or with pull-up
-#define ADD_REG_CAM0_TRIGGER_FREQUENCY      44 // U16    Sets the trigger frequency for camera 0 between 1 and 1000
-#define ADD_REG_CAM0_TRIGGER_DURATION_US    45 // U16    Sets the duration of the trigger pulse (minimum is 100) for camera 0
-#define ADD_REG_RESERVED2                   46 // U8     
-#define ADD_REG_RESERVED3                   47 // U8     
-#define ADD_REG_CAM1_TRIGGER_CONFIG         48 // U8     Configures if trigger is inverted for camera 1
-#define ADD_REG_CAM1_TRIGGER_INVERTED       49 // U8     Trigger is inverted for camera 1 in case this register is not empty (also inverts Input 0)
-#define ADD_REG_CAM1_STROBE_SOURCE          50 // U8     Select the strobe source line for camera 1. The direct line or with pull-up
-#define ADD_REG_CAM1_TRIGGER_FREQUENCY      51 // U16    Sets the trigger frequency for camera 1 between 1 and 1000
-#define ADD_REG_CAM1_TRIGGER_DURATION_US    52 // U16    Sets the duration of the trigger pulse (minimum is 100) for camera 1
-#define ADD_REG_RESERVED4                   53 // U8     
-#define ADD_REG_RESERVED5                   54 // U8     
-#define ADD_REG_OUT0_CONFIG                 55 // U8     Configures the digital Output 0
-#define ADD_REG_OUT1_CONFIG                 56 // U8     Configures the digital Output 1
-#define ADD_REG_RESERVED6                   57 // U8     
-#define ADD_REG_RESERVED7                   58 // U8     
-#define ADD_REG_OUT_SET                     59 // U8     Bitmask to set the digital ouputs
-#define ADD_REG_OUT_CLEAR                   60 // U8     Bitmask to clear the digital ouputs
-#define ADD_REG_OUT_TOGGLE                  61 // U8     Bitmask to toggle the digital ouputs
-#define ADD_REG_OUT_WRITE                   62 // U8     Bitmask to write the digital ouputs
-#define ADD_REG_IN_STATE                    63 // U8     Contains the state of the digital Input 0
+#define ADD_REG_START_AND_STOP              36 // U8     Starts and stops the cameras immediately
+#define ADD_REG_START_AND_STOP_TIMESTAMPED  37 // U8     Starts and stops the cameras
+#define ADD_REG_START_TIMESTAMP             38 // U32    Set when the camera starts to acquire frames
+#define ADD_REG_STOP_TIMESTAMP              39 // U32    Set when the camera stops to acquire frames
+#define ADD_REG_RESERVED0                   40 // U8     
+#define ADD_REG_RESERVED1                   41 // U8     
+#define ADD_REG_CAM0_TRIGGER_CONFIG         42 // U8     Configures the trigger source for camera 0
+#define ADD_REG_CAM0_TRIGGER_INVERTED       43 // U8     Configures if trigger is inverted for camera 0
+#define ADD_REG_CAM0_STROBE_SOURCE          44 // U8     Select the strobe source line for camera 0. The direct line or with pull-up
+#define ADD_REG_CAM0_TRIGGER_FREQUENCY      45 // U16    Sets the trigger frequency for camera 0 between 1 and 1000
+#define ADD_REG_CAM0_TRIGGER_DURATION_US    46 // U16    Sets the duration of the trigger pulse (minimum is 100) for camera 0
+#define ADD_REG_RESERVED2                   47 // U8     
+#define ADD_REG_RESERVED3                   48 // U8     
+#define ADD_REG_CAM1_TRIGGER_CONFIG         49 // U8     Configures if trigger is inverted for camera 1
+#define ADD_REG_CAM1_TRIGGER_INVERTED       50 // U8     Trigger is inverted for camera 1 in case this register is not empty (also inverts Input 0)
+#define ADD_REG_CAM1_STROBE_SOURCE          51 // U8     Select the strobe source line for camera 1. The direct line or with pull-up
+#define ADD_REG_CAM1_TRIGGER_FREQUENCY      52 // U16    Sets the trigger frequency for camera 1 between 1 and 1000
+#define ADD_REG_CAM1_TRIGGER_DURATION_US    53 // U16    Sets the duration of the trigger pulse (minimum is 100) for camera 1
+#define ADD_REG_RESERVED4                   54 // U8     
+#define ADD_REG_RESERVED5                   55 // U8     
+#define ADD_REG_OUT0_CONFIG                 56 // U8     Configures the digital Output 0
+#define ADD_REG_OUT1_CONFIG                 57 // U8     Configures the digital Output 1
+#define ADD_REG_RESERVED6                   58 // U8     
+#define ADD_REG_RESERVED7                   59 // U8     
+#define ADD_REG_OUT_SET                     60 // U8     Bitmask to set the digital ouputs
+#define ADD_REG_OUT_CLEAR                   61 // U8     Bitmask to clear the digital ouputs
+#define ADD_REG_OUT_TOGGLE                  62 // U8     Bitmask to toggle the digital ouputs
+#define ADD_REG_OUT_WRITE                   63 // U8     Bitmask to write the digital ouputs
+#define ADD_REG_IN_STATE                    64 // U8     Contains the state of the digital Input 0
 
 /************************************************************************/
 /* PWM Generator registers' memory limits                               */
@@ -213,8 +215,8 @@ typedef struct
 /************************************************************************/
 /* Memory limits */
 #define APP_REGS_ADD_MIN                    0x20
-#define APP_REGS_ADD_MAX                    0x3F
-#define APP_NBYTES_OF_REG_BANK              42
+#define APP_REGS_ADD_MAX                    0x40
+#define APP_NBYTES_OF_REG_BANK              43
 
 /************************************************************************/
 /* Registers' bits                                                      */

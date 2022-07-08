@@ -17,6 +17,7 @@ void (*app_func_rd_pointer[])(void) = {
 	&app_read_REG_CAM0_EVENT_CONFIG,
 	&app_read_REG_CAM1_EVENT_CONFIG,
 	&app_read_REG_START_AND_STOP,
+	&app_read_REG_START_AND_STOP_TIMESTAMPED,
 	&app_read_REG_START_TIMESTAMP,
 	&app_read_REG_STOP_TIMESTAMP,	
 	&app_read_REG_RESERVED0,
@@ -52,6 +53,7 @@ bool (*app_func_wr_pointer[])(void*) = {
 	&app_write_REG_CAM0_EVENT_CONFIG,
 	&app_write_REG_CAM1_EVENT_CONFIG,
 	&app_write_REG_START_AND_STOP,
+	&app_write_REG_START_AND_STOP_TIMESTAMPED,
 	&app_write_REG_START_TIMESTAMP,
 	&app_write_REG_STOP_TIMESTAMP,
 	&app_write_REG_RESERVED0,
@@ -208,6 +210,23 @@ bool app_write_REG_START_AND_STOP(void *a)
 		}			
 
 	app_regs.REG_START_AND_STOP = reg;
+	return true;
+}
+
+
+/************************************************************************/
+/* REG_START_AND_STOP_TIMESTAMPED                                       */
+/************************************************************************/
+void app_read_REG_START_AND_STOP_TIMESTAMPED(void)
+{
+	
+}
+
+bool app_write_REG_START_AND_STOP_TIMESTAMPED(void *a)
+{
+	uint8_t reg = *((uint8_t*)a);
+
+	app_regs.REG_START_AND_STOP_TIMESTAMPED = reg;
 	return true;
 }
 
