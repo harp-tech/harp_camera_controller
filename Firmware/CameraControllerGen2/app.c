@@ -229,8 +229,12 @@ uint16_t ms_counter = 0;
 
 extern bool cam0_start_request;
 extern bool cam1_start_request;
+extern bool cam0_start_request_timestamped;
+extern bool cam1_start_request_timestamped;
 extern bool cam0_stop_request;
 extern bool cam1_stop_request;
+extern bool cam0_stop_request_timestamped;
+extern bool cam1_stop_request_timestamped;
 
 bool cam0_is_using_fixed_frequency = false;
 bool cam1_is_using_fixed_frequency = false;
@@ -255,48 +259,60 @@ extern uint16_t cam1_pulse_target_count;
 void core_callback_t_before_exec(void) {}
 void core_callback_t_after_exec(void) {}
 void core_callback_t_new_second(void)
-{
+{	
 	ms_counter = 0;
 	
-	if (cam0_start_request)
+	if (cam0_start_request_timestamped)
 	{
-		if (core_func_read_R_TIMESTAMP_SECOND() >= app_regs.REG_START_TIMESTAMP)
+		if (core_func_read_R_TIMESTAMP_SECOND() == app_regs.REG_START_TIMESTAMP)
 		{
-			cam0_start_request = false;
-			cam0_acquiring = true;
+			cam0_start_request_timestamped = false;
+			cam0_start_request = true;
+		}
+	}
+	
+	if (cam1_start_request_timestamped)
+	{
+		if (core_func_read_R_TIMESTAMP_SECOND() == app_regs.REG_START_TIMESTAMP)
+		{
+			cam1_start_request_timestamped = false;
+			cam1_start_request = true;
+		}
+	}
+	
+	if (cam0_start_request)
+	{		
+		cam0_start_request = false;
+		cam0_acquiring = true;
 			
-			if (core_bool_is_visual_enabled())
-				set_LED_CAM0;
+		if (core_bool_is_visual_enabled())
+			set_LED_CAM0;
 			
-			if (app_regs.REG_CAM0_TRIGGER_CONFIG == MSK_TRG_SRC_INTERNAL)
-			{
-				timer_type0_pwm(&TCD0, cam0_freq_prescaler, cam0_freq_target_count, cam0_freq_dutycyle, INT_LEVEL_LOW, INT_LEVEL_LOW);
-			}
-			else
-			{
-				cam0_is_using_fixed_frequency = true;
-			}
+		if (app_regs.REG_CAM0_TRIGGER_CONFIG == MSK_TRG_SRC_INTERNAL)
+		{
+			timer_type0_pwm(&TCD0, cam0_freq_prescaler, cam0_freq_target_count, cam0_freq_dutycyle, INT_LEVEL_LOW, INT_LEVEL_LOW);
+		}
+		else
+		{
+			cam0_is_using_fixed_frequency = true;
 		}
 	}
 
 	if (cam1_start_request)
 	{
-		if (core_func_read_R_TIMESTAMP_SECOND() >= app_regs.REG_START_TIMESTAMP)
+		cam1_start_request = false;
+		cam1_acquiring = true;
+			
+		if (core_bool_is_visual_enabled())
+			set_LED_CAM1;
+			
+		if (app_regs.REG_CAM1_TRIGGER_CONFIG == MSK_TRG_SRC_INTERNAL)
 		{
-			cam1_start_request = false;
-			cam1_acquiring = true;
-			
-			if (core_bool_is_visual_enabled())
-				set_LED_CAM1;
-			
-			if (app_regs.REG_CAM1_TRIGGER_CONFIG == MSK_TRG_SRC_INTERNAL)
-			{
-				timer_type0_pwm(&TCC0, cam1_freq_prescaler, cam1_freq_target_count, cam1_freq_dutycyle, INT_LEVEL_LOW, INT_LEVEL_LOW);
-			}
-			else
-			{
-				cam1_is_using_fixed_frequency = true;
-			}
+			timer_type0_pwm(&TCC0, cam1_freq_prescaler, cam1_freq_target_count, cam1_freq_dutycyle, INT_LEVEL_LOW, INT_LEVEL_LOW);
+		}
+		else
+		{
+			cam1_is_using_fixed_frequency = true;
 		}
 	}	
 }
@@ -306,22 +322,34 @@ void core_callback_t_1ms(void)
 	bool trigger_cam0 = false;
 	bool trigger_cam1 = false;
 	
-	if (cam0_stop_request)
+	if (cam0_stop_request_timestamped)
 	{
-		if (core_func_read_R_TIMESTAMP_SECOND() >= app_regs.REG_STOP_TIMESTAMP)
+		if (core_func_read_R_TIMESTAMP_SECOND() == app_regs.REG_STOP_TIMESTAMP)
 		{
-			cam0_stop_request = false;
+			cam0_stop_request_timestamped = false;
 			stop_cam0_when_possible = true;
 		}
+	}
+	
+	if (cam1_stop_request_timestamped)
+	{
+		if (core_func_read_R_TIMESTAMP_SECOND() == app_regs.REG_STOP_TIMESTAMP)
+		{
+			cam1_stop_request_timestamped = false;
+			stop_cam1_when_possible = true;
+		}
+	}
+	
+	if (cam0_stop_request)
+	{
+		cam0_stop_request = false;
+		stop_cam0_when_possible = true;
 	}	
 
 	if (cam1_stop_request)
-	{		
-		if (core_func_read_R_TIMESTAMP_SECOND() >= app_regs.REG_STOP_TIMESTAMP)
-		{
-			cam1_stop_request = false;
-			stop_cam1_when_possible = true;
-		}
+	{
+		cam1_stop_request = false;
+		stop_cam1_when_possible = true;
 	}
 		
 	if (cam0_is_using_fixed_frequency)

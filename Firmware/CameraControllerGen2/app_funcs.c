@@ -135,8 +135,12 @@ bool app_write_REG_CAM1_EVENT_CONFIG(void *a)
 /************************************************************************/
 bool cam0_start_request = false;
 bool cam1_start_request = false;
+bool cam0_start_request_timestamped = false;
+bool cam1_start_request_timestamped = false;
 bool cam0_stop_request = false;
 bool cam1_stop_request = false;
+bool cam0_stop_request_timestamped = false;
+bool cam1_stop_request_timestamped = false;
 bool cam0_acquiring = false;
 bool cam1_acquiring = false;
 
@@ -168,33 +172,55 @@ bool app_write_REG_START_AND_STOP(void *a)
 	if (reg & B_START_CAM0)
 		if (app_regs.REG_CAM0_TRIGGER_CONFIG != MSK_TRG_SRC_INPUT0)
 			if (cam0_acquiring == false)
+			{
+				cam0_start_request_timestamped = false;
 				cam0_start_request = true;
+			}
 	
 	if (reg & B_START_CAM1)
 		if (app_regs.REG_CAM1_TRIGGER_CONFIG != MSK_TRG_SRC_INPUT0)
 			if (cam1_acquiring == false)
+			{
+				cam1_start_request_timestamped = false;
 				cam1_start_request = true;
+			}
 				
 	if (reg & B_STOP_CAM0)
 		if (app_regs.REG_CAM0_TRIGGER_CONFIG != MSK_TRG_SRC_INPUT0)
 		{
-			if (cam0_start_request) cam0_start_request = false;
-			if (cam0_acquiring)     cam0_stop_request = true;
+			cam0_start_request = false;
+			cam0_start_request_timestamped = false;
+			
+			if (cam0_acquiring)
+			{
+				cam0_stop_request_timestamped = false;
+				cam0_stop_request = true;
+			}
 		}
 				
 	if (reg & B_STOP_CAM1)
 		if (app_regs.REG_CAM1_TRIGGER_CONFIG != MSK_TRG_SRC_INPUT0)
 		{
-			if (cam1_start_request) cam1_start_request = false;
-			if (cam1_acquiring)     cam1_stop_request = true;
+			cam1_start_request = false;
+			cam1_start_request_timestamped = false;
+			
+			if (cam1_acquiring)
+			{
+				cam1_stop_request_timestamped = false;
+				cam1_stop_request = true;
+			}
 		}
 		
 	if (reg & B_SINGLE_FRAME_CAM0)
 		if (app_regs.REG_CAM0_TRIGGER_CONFIG != MSK_TRG_SRC_INPUT0)
 		{
-			if (cam0_acquiring)     return false;
-			if (cam0_start_request)	return false;
+			if (cam0_acquiring)                 return false;
+			if (cam0_start_request_timestamped)	return false;
+			if (cam0_start_request)	            return false;
 			
+			if (core_bool_is_visual_enabled())
+				set_LED_CAM0;
+				
 			timer_type0_pwm(&TCD0, cam0_freq_prescaler, cam0_freq_target_count, cam0_freq_dutycyle, INT_LEVEL_LOW, INT_LEVEL_LOW);
 			stop_cam0_when_possible = true;
 		}
@@ -202,8 +228,12 @@ bool app_write_REG_START_AND_STOP(void *a)
 	if (reg & B_SINGLE_FRAME_CAM1)
 		if (app_regs.REG_CAM1_TRIGGER_CONFIG != MSK_TRG_SRC_INPUT0)
 		{
-			if (cam1_acquiring)     return false;
-			if (cam1_start_request)	return false;
+			if (cam1_acquiring)                 return false;
+			if (cam1_start_request_timestamped)	return false;
+			if (cam1_start_request)	            return false;
+			
+			if (core_bool_is_visual_enabled())
+				set_LED_CAM0;
 			
 			timer_type0_pwm(&TCC0, cam1_freq_prescaler, cam1_freq_target_count, cam1_freq_dutycyle, INT_LEVEL_LOW, INT_LEVEL_LOW);
 			stop_cam1_when_possible = true;
@@ -225,6 +255,48 @@ void app_read_REG_START_AND_STOP_TIMESTAMPED(void)
 bool app_write_REG_START_AND_STOP_TIMESTAMPED(void *a)
 {
 	uint8_t reg = *((uint8_t*)a);
+	
+	if (reg & B_START_CAM0)
+		if (app_regs.REG_CAM0_TRIGGER_CONFIG != MSK_TRG_SRC_INPUT0)
+			if (cam0_acquiring == false)
+			{
+				cam0_start_request_timestamped = true;
+				cam0_start_request = false;
+			}
+	
+	if (reg & B_START_CAM1)
+		if (app_regs.REG_CAM1_TRIGGER_CONFIG != MSK_TRG_SRC_INPUT0)
+			if (cam1_acquiring == false)
+			{
+				cam1_start_request_timestamped = true;
+				cam1_start_request = false;
+			}
+				
+	if (reg & B_STOP_CAM0)
+		if (app_regs.REG_CAM0_TRIGGER_CONFIG != MSK_TRG_SRC_INPUT0)
+		{
+			cam0_start_request = false;
+			cam0_start_request_timestamped = false;
+			
+			if (cam0_acquiring)
+			{
+				cam0_stop_request_timestamped = true;
+				cam0_stop_request = false;
+			}
+		}
+				
+	if (reg & B_STOP_CAM1)
+		if (app_regs.REG_CAM1_TRIGGER_CONFIG != MSK_TRG_SRC_INPUT0)
+		{
+			cam1_start_request = false;
+			cam1_start_request_timestamped = false;
+			
+			if (cam1_acquiring)
+			{
+				cam1_stop_request_timestamped = true;
+				cam1_stop_request = false;
+			}
+		}
 
 	app_regs.REG_START_AND_STOP_TIMESTAMPED = reg;
 	return true;
